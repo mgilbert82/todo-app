@@ -11,7 +11,6 @@ export default function MyButton(props) {
                 type="primary"
                 shape="round"
                 icon={props.icon}
-                size="large"
                 onClick={props.onClick}
                 >{props.children}
             </Button>
