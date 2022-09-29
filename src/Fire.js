@@ -51,7 +51,7 @@ export default class Fire {
     }
 
     updateList(list) {
-        this.ref.doc(list.id).update(list);
+        this.ref.doc(list.id).update();
     }
 
     detach() {

@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from "react";
 import { Modal, Button } from 'antd';
 import ListForm from './ListForm';
-import { useState } from 'react';
 import Fire from '../Fire';
 
 
@@ -20,9 +19,15 @@ export default function ListModal(props) {
                     "color": color,
                     "tasks": []
                 }
-                firebase.addList(list);
+                if (props.list) {
+                    list.id = props.list.id;
+                    list.tasks = props.list.tasks;
+                    firebase.updateList(list);
+                } else {
+                    firebase.addList(list);
+                }
             }
-        });
+        })
         props.handleCancel();
     }
 return (
@@ -31,11 +36,8 @@ return (
         open={props.isOpen}
         onCancel={props.handleCancel}
         footer={[
-            <Button
-                type="primary"
-                onClick={handleSubmit}
-            >
-            {props.list ? "Modifier" : "Créer une liste"}
+            <Button type="primary" onClick={handleSubmit} >
+            {props.list ? "Modifier" : "Créer"}
             </Button>
         ]}
     >
